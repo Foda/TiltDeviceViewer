@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rxui:ReactiveContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rxui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             xmlns:view="clr-namespace:TiltViewer.View"
+             xmlns:vm="clr-namespace:TiltViewer.ViewModels"
+             x:DataType="vm:TiltHydrometerViewModel"
+             x:TypeArguments="vm:TiltHydrometerViewModel"
+             x:Class="TiltViewer.View.TiltHydrometerView">
+    <Frame CornerRadius="4" 
+           BorderColor="#232323" 
+           BackgroundColor="#323232">
+        <VerticalStackLayout HorizontalOptions="Start">
+            <Grid HorizontalOptions="Fill">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="Start" Text="{Binding BatchName}"
+                       FontAttributes="Bold" FontSize="18" Grid.Column="0"/>
+
+                <Button Text="..." Clicked="SetBatchName_Clicked" Grid.Column="1"
+                        HeightRequest="24" MinimumHeightRequest="24" Padding="0"/>
+            </Grid>
+
+            <Border HeightRequest="1" HorizontalOptions="Fill" 
+                    Stroke="White" Opacity="0.1" StrokeThickness="1"
+                    Margin="0,8,0,8"/>
+
+            <Label HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Tilt " FontAttributes="Bold"/>
+                        <Span Text="{Binding ColorName}" FontAttributes="Bold"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Border HeightRequest="1" HorizontalOptions="Fill" 
+                    Stroke="White" Opacity="0.1" StrokeThickness="1"
+                    Margin="0,8,0,8"/>
+
+            <HorizontalStackLayout Spacing="32">
+                <VerticalStackLayout>
+                    <Label Text="Gravity" Style="{StaticResource DefaultText}" FontAttributes="Bold"/>
+                    <Label HorizontalOptions="Start" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding SpecificGravity, StringFormat='{0:F3}'}" FontSize="Title"/>
+                                <Span Text=" SG" FontSize="Caption"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+
+                <Line WidthRequest="1" HeightRequest="40" 
+                      X1="0" X2="0" Y1="0" Y2="40"
+                      Stroke="White" Opacity="0.2"/>
+
+                <VerticalStackLayout>
+                    <Label Text="Temp" Style="{StaticResource DefaultText}" FontAttributes="Bold"/>
+                    <Label HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Temperature}" FontSize="Title"/>
+                                <Span Text=" ℉" FontSize="Caption"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <GraphicsView HeightRequest="96" WidthRequest="256" Margin="0,8,0,0">
+                <GraphicsView.Drawable>
+                    <view:ChartDrawable ChartHeight="80" ChartWidth="210"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <Label Text="{Binding LastUpdate, StringFormat='{}{0:hh\\:mm\\:ss}'}" FontSize="Caption"
+                   HorizontalOptions="Start" Opacity="0.5" Margin="0,4,0,0"/>
+        </VerticalStackLayout>
+    </Frame>
+</rxui:ReactiveContentView>

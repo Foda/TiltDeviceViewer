@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TiltViewer.View.ReportView"
+             xmlns:view="clr-namespace:TiltViewer.View">
+    <VerticalStackLayout>
+        <Label Text="Specific Gravity" Style="{StaticResource DefaultText}" FontAttributes="Bold"
+               FontSize="24"/>
+        <Border StrokeThickness="0" Background="#323232" Padding="8">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="4, 4, 4, 4" />
+            </Border.StrokeShape>
+            <GraphicsView HeightRequest="184" WidthRequest="384" Margin="0,8,0,0">
+                <GraphicsView.Drawable>
+                    <view:ChartDrawable ChartHeight="168" ChartWidth="350"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+        </Border>
+
+        <Label Text="Temperature" Style="{StaticResource DefaultText}" FontAttributes="Bold"
+               FontSize="24" Margin="0,24,0,0"/>
+        <Border StrokeThickness="0" Background="#323232" Padding="8">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="4, 4, 4, 4" />
+            </Border.StrokeShape>
+            <GraphicsView HeightRequest="184" WidthRequest="384" Margin="0,8,0,0">
+                <GraphicsView.Drawable>
+                    <view:ChartDrawable ChartHeight="168" ChartWidth="350"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>
